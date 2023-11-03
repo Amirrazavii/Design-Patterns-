@@ -8,7 +8,7 @@ interface Entity {
 
 class Department implements Entity{
     accept(visitor: Visitor): void {
-        visitor.visitDepartment();
+        visitor.visitDepartment(this);
     }
     methode(): void {
         throw new Error("Method not implemented.");
@@ -17,7 +17,7 @@ class Department implements Entity{
 }
 class Company implements Entity{
     accept(visitor: Visitor): void {
-        visitor.visitCompany();
+        visitor.visitCompany(this);
     }
     methode(): void {
         throw new Error("Method not implemented.");
@@ -27,7 +27,7 @@ class Company implements Entity{
 
 class Employee implements Entity{
     accept(visitor: Visitor): void {
-        visitor.visitEmployee();
+        visitor.visitEmployee(this);
         
     }
     methode(): void {
@@ -38,9 +38,9 @@ class Employee implements Entity{
 
 
 interface Visitor {
-    visitCompany():void
-    visitEmployee():void
-    visitDepartment():void
+    visitCompany(visitCompany : Company):void
+    visitEmployee(visitCompany : Employee):void
+    visitDepartment(visitCompany : Department):void
 }
 class SalaryReportVisitor implements Visitor{
     visitCompany(): void {
